@@ -1,0 +1,108 @@
+﻿@model App_Data_ClassLib.Models.User
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 style="text-align:center">Đăng ký</h1>
+
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="Create" class="needs-validation" novalidate enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhongNumber" class="control-label"></label>
+                <input asp-for="PhongNumber" class="form-control" />
+                <span asp-validation-for="PhongNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DoB" class="control-label"></label>
+                <input asp-for="DoB" class="form-control" />
+                <span asp-validation-for="DoB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" value="Create" class="btn btn-primary">Tạo mới</button>
+                <a asp-action="Index" class="btn btn-secondary">Trở về danh sách</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<style>
+    /* Định dạng các nhãn và input */
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"] {
+        width: 100%;
+    }
+
+    /* Định dạng nút Create */
+    .btn-create {
+        background-color: #007bff; /* Màu nền */
+        color: #fff; /* Màu chữ */
+        border: none;
+    }
+
+    .btn-create:hover {
+        background-color: #0056b3; /* Màu nền khi di chuột qua */
+    }
+
+    /* Định dạng link Back to List */
+    .back-link {
+        color: #007bff;
+    }
+
+    .back-link:hover {
+        color: #0056b3; /* Màu chữ khi di chuột qua */
+    }
+    .form-group{
+        margin-top:10px;
+    }
+</style>
+<script>
+    function ThongBao() {
+        if (confirm("Đăng ký thành công! Nhấn OK để quay về trang chủ.")) {
+            window.location.href = "/Home/"; // Chuyển hướng về trang Home
+        } else {
+            // Xử lý khi người dùng nhấn Cancel
+        }
+    }
+</script>

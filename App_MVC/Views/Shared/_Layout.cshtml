@@ -1,0 +1,144 @@
+﻿@using App_Data_ClassLib.Models;
+@{
+     var dbContext = new SD18302_NET104Context();
+}
+@{
+    var logout = Context.Request.HttpContext.Session.GetString("user");
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BookStore</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/App_MVC.styles.css" asp-append-version="true" />
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm border-bottom border-body bg-black shadow">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/logo.jpg" alt="BookStore Logo" height="55"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Các mục bên trái -->
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white active" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white active" asp-area="" asp-controller="User" asp-action="Index">User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white active" asp-area="" asp-controller="SanPham" asp-action="Index">Sản Phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white active" asp-area="" asp-controller="DanhMuc" asp-action="Index">Danh Mục Sản Phẩm</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link text-white active" asp-area="" asp-controller="ChucVu" asp-action="Index">Danh Mục chức vụ</a>
+                        </li>
+                    </ul>
+                    <!-- Thanh tìm kiếm ở giữa -->
+                    <form class="d-flex form-inline my-2 my-lg-0 mx-auto" role="search" action="/Home/Index" method="get">
+                        <input class="form-control mr-sm-2" style="width: 400px;" type="text" name="name" placeholder="Tìm kiếm" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0"  style="margin-left:10px;" type="submit">Tìm kiếm</button>
+                    </form>
+                    <!-- Các mục bên phải -->
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white active" asp-area="" asp-controller="GioHang" asp-action="Index">
+                                <i class="fas fa-shopping-cart nav-link text-white"></i> Giỏ hàng
+                            </a>
+                        </li>
+                        @if(string.IsNullOrEmpty(logout)){
+                            <li class="nav-item">
+                            <a class="nav-link text-white active" asp-area="" asp-controller="User" asp-action="Login">
+                                <i class="fas fa-user nav-link text-white"></i> Tài khoản
+                            </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                            <a class="nav-link text-white active" asp-area="" asp-controller="User" asp-action="Logout">
+                                <i class="fas fa-user nav-link text-white"></i> Đăng xuất
+                            </a>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- footer -->
+        <footer class="bg-dark text-light text-center py-5">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-4">
+                  <img src="~/img/logo.jpg" alt="Logo" class="footer-logo">
+                  <p>Trường Cao Đẳng FPT<br>Hà Nội, Việt Nam</p>
+                </div>
+                <div class="col-lg-4">
+                  <h5>Liên hệ</h5>
+                  <p>Email: contact@example.com<br>Điện thoại: (123) 456-7890</p>
+                </div>
+                <div class="col-lg-4">
+                  <h5>Theo dõi chúng tôi</h5>
+                  <p>Đăng ký để nhận thông tin cập nhật về sản phẩm và dịch vụ của chúng tôi.</p>
+                  <form>
+                    <div class="input-group mb-3">
+                      <input type="email" class="form-control" placeholder="Địa chỉ Email" aria-label="Địa chỉ Email" aria-describedby="basic-addon2">
+                      <div class="input-group-append">
+                        <button class="btn btn-warning" type="button">Đăng ký</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="container mt-4">
+              <hr class="my-4">
+              <p>&copy; 2024 Đồng Minh Toản PH33341.</p>
+            </div>
+          </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+ <style>
+        /* CSS tùy chỉnh để làm đẹp footer */
+        footer {
+          background-color: #343a40; /* Màu nền */
+          color: #fff; /* Màu chữ */
+          padding: 60px 0; /* Khoảng cách padding */
+        }
+    
+        .footer-logo {
+          max-width: 100px; /* Độ rộng tối đa cho logo */
+        }
+    
+        /* Tùy chỉnh một số kiểu chữ */
+        h5 {
+          color: #ffc107; /* Màu chữ cho tiêu đề */
+        }
+    
+        p {
+          font-size: 16px; /* Kích thước chữ cho đoạn văn bản */
+        }
+      </style>

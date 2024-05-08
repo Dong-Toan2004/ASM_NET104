@@ -1,0 +1,170 @@
+﻿@model IEnumerable<App_Data_ClassLib.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+    var message = ViewData["message"];
+}
+
+<h1 style="text-align:center">Danh sách user</h1>
+<h3>@message</h3>
+<form action="/User/Index" method="get">
+    <input type="text" id="searchInput" name="name" placeholder="Nhập chuỗi tìm kiếm...">
+    <input type="submit" value="Search">
+</form>
+<p>
+    <a class="button" asp-action="Create">Thêm mới user</a>
+    <a class="button" asp-action="RollBack">RollBack</a>
+</p>
+<table class="table">
+    <thead class="table-header">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Tên user
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+               Password
+            </th>
+            <th>
+                Username
+            </th>
+            <th>
+                Phonenumber
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Ngày sinh
+            </th>
+            <th>
+                Chức năng
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhongNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoB)
+            </td>
+            <td class="action-buttons">
+                <a class="button" asp-action="Edit" asp-route-id="@item.Id">Sửa</a>
+                <a class="button" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a class="button" asp-action="Delete" asp-route-id="@item.Id">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<style>
+    /* CSS Styles */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+        color: #333;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    /*.table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }*/
+
+    .table tr:hover {
+        background-color: #CCFFFF;
+    }
+
+    .button {
+        background-color: #00FA9A;
+        border: none;
+        color: white;
+        padding: 10px 24px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    /* Đặt CSS tại đây */
+    .action-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .table-header tr th {
+        background-color: #00BFFF; /* Màu xanh lớp biển nhạt */
+        color: white; /* Màu chữ trắng */
+    }
+     /* Thiết lập kiểu cho phần input */
+    #searchInput {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        width: 250px; /* Điều chỉnh kích thước tùy thích */
+    }
+    
+    /* Thiết lập kiểu cho nút Search */
+    input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #007bff; /* Màu nền */
+        color: #fff; /* Màu chữ */
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    
+    /* Thiết lập kiểu cho phần form */
+    form {
+        display: flex;
+        align-items: center; /* Canh chỉnh form theo chiều dọc */
+        margin-top:20px;
+        margin-bottom:20px;
+    }
+    
+    /* Canh chỉnh nút Search cách phải một chút */
+    input[type="submit"] {
+        margin-left: 10px;
+    }
+</style>

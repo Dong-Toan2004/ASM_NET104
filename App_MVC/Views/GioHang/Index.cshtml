@@ -1,0 +1,124 @@
+﻿@using App_Data_ClassLib.Models;
+@model IEnumerable<App_Data_ClassLib.Models.GioHangChiTiet>
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+     var dbContext = new SD18302_NET104Context();
+}
+<h1 style="text-align:center">Giỏ hàng</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead class="table-header">
+        <tr>
+            <th>Tên Sách</th>
+            <th>Ảnh</th>
+            <th>Số Lượng</th>
+            <th>Đơn giá</th>
+            <th>Thành tiền</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+               @{
+                    // Lấy tên sản phẩm dựa trên IdSP
+                   
+                    var tenSanPham = dbContext.SanPhams.FirstOrDefault(sp => sp.IdSP == item.IdSP)?.Name;
+                }
+                @tenSanPham
+            </td>
+            <td>
+               @{
+                    // Lấy tên sản phẩm dựa trên IdSP
+                   
+                    var anhSP = dbContext.SanPhams.FirstOrDefault(sp => sp.IdSP == item.IdSP)?.Anh;
+                    <img src="~/img/@anhSP" alt="Ảnh Sách" style="max-width: 100px; max-height: 100px;" />
+                }
+                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonGia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThanhTien)
+            </td>
+            <td class="action-buttons">
+                <a class="button" asp-action="Delete" asp-route-id="@item.IdGioHangCT">Xóa</a>
+                 @using (Html.BeginForm("ThemSanPhamVaoGioHang", "Home", FormMethod.Post))
+                    {
+                        @Html.Hidden("idSanPham", item.IdSP) <!-- Thay yourIdValue bằng giá trị id thực tế -->
+                        <div class="form-group">
+                            <label for="quantity" class="control-label">Quantity:</label>
+                            <input type="text" name="soLuong" id="soLuong" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <input class="button" type="submit" value="Sửa số lượng" class="btn btn-default" />
+                        </div>
+                    }
+            </td>
+        </tr>
+ }
+    </tbody>
+</table>
+<style>
+    /* CSS Styles */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+        color: #333;
+        font-weight: bold;
+        text-align: center;
+    }
+
+   /* .table tr:nth-child(even) {
+        background-color: #f2f2f2; 
+    }*/
+
+    .table tr:hover {
+        background-color: #CCFFFF;
+    }
+
+    .button {
+        background-color: #00FA9A;
+        border: none;
+        color: white;
+        padding: 10px 24px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    /* Đặt CSS tại đây */
+    .action-buttons {
+        
+        align-items: center;
+        justify-content: space-around;
+    }
+    .table-header tr th {
+        background-color: #00BFFF; /* Màu xanh lớp biển nhạt */
+        color: white; /* Màu chữ trắng */
+    }
+</style>

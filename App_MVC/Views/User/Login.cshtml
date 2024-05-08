@@ -1,0 +1,73 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Login";
+}
+<h2>Đăng nhập</h2>
+
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
+{
+    <div class="container">
+        <div class="form-group">
+            <label for="username">Tên đăng nhập:</label>
+            <input type="text" id="username" name="username" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Mật khẩu:</label>
+            <input type="password" id="password" name="password" class="form-control" />
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+        <a href="@Url.Action("Create", "User")" class="btn btn-secondary">Đăng ký</a>
+    </div>
+}
+
+<style>
+   /* CSS for login form */
+    .form-group {
+        margin-bottom: 20px;
+        width: 300px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-align: center;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        transition: background-color 0.3s;
+        margin-right: 10px; /* Thêm khoảng cách giữa nút Đăng nhập và Đăng ký */
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+</style>
