@@ -27,7 +27,7 @@ namespace App_MVC.Controllers
             var sessionData = HttpContext.Session.GetString("user");
             if (sessionData == null)
             {
-                ViewData["message"] = "Bạn chưa đăng nhập hoặc phiên đăng nhập đã hết hạn";
+                ViewData["message"] = "Bạn chưa đăng nhập hoặc hết phiên đăng nhập";
             }
             else
             {

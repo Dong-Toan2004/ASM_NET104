@@ -35,7 +35,7 @@
             </td>
             <td>
                @{
-                    // Lấy tên sản phẩm dựa trên IdSP
+                    // Lấy ảnh sản phẩm dựa trên IdSP
                    
                     var anhSP = dbContext.SanPhams.FirstOrDefault(sp => sp.IdSP == item.IdSP)?.Anh;
                     <img src="~/img/@anhSP" alt="Ảnh Sách" style="max-width: 100px; max-height: 100px;" />
